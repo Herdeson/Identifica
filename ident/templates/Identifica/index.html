@@ -1,0 +1,33 @@
+{% extends "Identifica/base.html" %}
+{% load staticfiles %}
+{% block conteudo %}
+
+{% if object_list %}
+    <div class="row">
+    {% for individuo in object_list %}
+
+       <div class="col-md-4  col-lg-4 col-sm-4">
+
+            {% if individuo.foto %}
+            <img src="{{individuo.foto.url}}" class="img-responsive" alt={{individuo.id}} style="width: 200px; height: 200px;">
+            {% else %}
+            <img src="{% static 'Identifica/img/sem-imagem.jpg' %}" class="img-responsive" alt={{individuo.id}} style="width: 200px; height: 200px;">
+            {% endif %}
+
+        <p>
+          <p><b>NOME: </b>{{individuo.nome}}</p>
+          <p><b>ALCUNHA: </b>{{individuo.alcunha}}</p>
+
+       </div>
+    
+     
+    
+    {% endfor %}
+     </div>
+    
+{% else %}
+    <p>Não há Individuos Cadastrados</p>
+{% endif %}
+
+{% endblock %}
+
