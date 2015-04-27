@@ -15,11 +15,11 @@ from .models import Individuo
 
 
 def teste(request):
-    return render(request,'Identifica/index.html')
+    return render(request,'ident/index.html')
 
 class IndexView(ListView):
     model = Individuo
-    template_name = 'Identifica/index.html'
+    template_name = 'ident/index.html'
 
     def get_queryset(self):
         return Individuo.objects.order_by('-dataModificacao')

@@ -1,10 +1,12 @@
-{% extends "Identifica/base.html" %}
+{% extends "ident/base.html" %}
 {% load staticfiles %}
 {% block conteudo %}
 
 <form class="post-form" enctype="multipart/form-data"  action="" method="post">{% csrf_token %}
     
-    {{ form.as_p }}
+  {% load bootstrap %}
+
+	{{ form|bootstrap_horizontal }}
 
 
    	<div class="form-group" >
