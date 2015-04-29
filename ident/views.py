@@ -6,11 +6,35 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, FormView
 
 from .models import Individuo
-#from .forms import IndividuoForm
+
+from .forms import IndividuoForm
+from ident.forms import TatuagemFormSet
 
 # Create your views here.
 
-
+def submit_tatuagem(request):
+    if request.POST:
+        
+        form = IndividuoForm(request.POST)
+        if form.is_valid():
+            recipe = form.save(commit=False)
+            tatuagem_formset = TatuagemFormSet(request.POST, instance=recipe)
+            
+            if tatuagem_formset.is_valid():
+                recipe.save()
+                tatuagem_formset.save()
+                
+                return HttpResponseRedirect('/identifica/')
+            
+    else:
+        form = IndividuoForm()
+        tatuagem_formset = TatuagemFormSet(instance = Individuo())
+        
+    return render(request, 'ident/formset.html' , {
+                        "form": form,
+                        "tatuagem_formset": tatuagem_formset,}
+                        )
+    
 
 
 
