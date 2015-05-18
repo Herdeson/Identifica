@@ -1,0 +1,13 @@
+'''
+Created on 18/05/2015
+
+@author: herdeson
+'''
+from django import template
+register = template.Library()
+
+
+
+@register.filter(name='addcss')
+def addcss(field, css):
+    return field.as_widget(attrs={"class":css})
